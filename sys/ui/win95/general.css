@@ -98,3 +98,18 @@ div.frame {
     border-bottom: 1px solid white;
     border-right: 1px solid white;
 }
+
+button.appTile {
+    font-size: 16px;
+    min-width: 72px;
+    min-height: 64px;
+    max-width: 72px;
+    max-height: 64px;
+}
+
+img.appIcon {
+    min-width: 36px;
+    min-height: 32px;
+    max-width: 36px;
+    max-height: 32px;
+}
