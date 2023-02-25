@@ -13,6 +13,7 @@ button {
     border: none;
     min-width: 75px;
     min-height: 23px;
+    color: black;
 }
 
 button.primary {
