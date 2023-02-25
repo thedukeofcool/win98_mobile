@@ -1,0 +1,49 @@
+button {
+    border-radius: 0px;
+    font-family: msSans;
+    line-height: 1.35;
+    background-color: #C0C0C0;
+    padding: 5px;
+    font-size: 11px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    box-shadow: inset -1px -1px black, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    border: none;
+    min-width: 75px;
+    min-height: 23px;
+}
+
+button.primary {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-shadow:  inset 1px 1px black, inset -2px -2px black, inset 2px 2px white, inset -3px -3px grey, inset 3px 3px #dfdfdf;
+}
+
+button:disabled {
+    color: #888;
+}
+
+button.primary:active, button.default:active, button.clicked {
+    box-shadow: inset -1px -1px black, inset 1px 1px black, inset -2px -2px grey, inset 2px 2px gray;
+}
+
+button.inset:active, button.clicked:active {
+    box-shadow: inset -1px -1px black, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+}
+
+button.titleControl:active, button.inset {
+    box-shadow: inset -1px -1px #fff, inset 1px 1px black, inset -2px -2px #dfdfdf, inset 2px 2px gray;
+}
+
+button.titleControl {
+    min-width: 0px;
+    min-height: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}

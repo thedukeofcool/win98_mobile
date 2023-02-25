@@ -1,0 +1,23 @@
+.terminal {
+    font-family: vgaSys;
+    font-size: 14px;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+
+    zoom: 1.5;
+}
+
+body {
+    width: 100% - 4px;
+    height: 100% - 4px;
+    padding: 4px;
+    margin: 0px;
+
+    background: black;
+    color: white;
+}

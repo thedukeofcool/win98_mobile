@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/sys/ui/win95/buttons.css">
+    <link rel="stylesheet" href="/sys/ui/win95/general.css">
+    <link rel="stylesheet" href="/sys/ui/win95/headers.css">
+    <link rel="stylesheet" href="/sys/ui/win95/title-bars.css">
+    <link rel="stylesheet" href="/sys/ui/win95/labels.css">
+    <link rel="stylesheet" href="/sys/ui/win95/windows.css">
+    <link rel="stylesheet" href="/sys/ui/win95/menuBars.css">
+    <link rel="stylesheet" href="/sys/ui/fonts.css">
+    <link rel="stylesheet" href="/sys/ui/nei.css">
+</head>
+<body>
+    <h3>Buttons</h3>
+    <button class="default">button.default</button>
+    <button class="default"><nei class="hotkey">b</nei>utton.default + hotkey</button>
+    <button class="primary">button.primary</button>
+    <button disabled="true">button.disabled</button>
+    <button class="inset">button.inset</button>
+    <button class="clicked">button.clicked</button>
+    <button class="titleControl">button.titleControl</button>
+    <h3>Labels</h3>
+    <label>label</label>
+    <label class="engraved">label.engraved</label>
+    <h3>Title Bars</h3>
+    <title-bar><nei class="title">titleBar.inactive</nei><button class="titleControl"><div class="windowControls"><img src="./sys/resources/img/png/minimize_btn.png"></button><button class="titleControl"><img src="./sys/resources/img/png/maximize_btn.png"></button>&nbsp;<button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar>
+    <title-bar class="active"><nei class="title">titleBar.active</nei><button class="titleControl"><div class="windowControls"><img src="./sys/resources/img/png/minimize_btn.png"></button><button class="titleControl"><img src="./sys/resources/img/png/maximize_btn.png"></button>&nbsp;<button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar>
+    <title-bar class="active"><nei class="title">titleBar.active</nei><button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar>
+    <title-bar class="active"><nei class="title">titleBar.active</nei><button class="titleControl"><img src="./sys/resources/img/png/help_btn.png"></button>&nbsp;<button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar>
+    <h3>Windows</h3>
+    <window><title-bar class="active">
+        <nei class="title">titleBar.active</nei><button class="titleControl">
+            <div class="windowControls"><img src="./sys/resources/img/png/minimize_btn.png">
+        </button><button class="titleControl"><img src="./sys/resources/img/png/maximize_btn.png"></button>&nbsp;<button
+            class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div>
+    </title-bar><label style="padding: 10px;">Some Content</label></window>
+    <window style="width: 300px"><title-bar class="active">
+            <nei class="title"><img src="sys/resources/img/png/test_icon.png"/> Never gonna give you up</nei>
+                <div class="windowControls"><button class="titleControl"><img src="./sys/resources/img/png/maximize_btn.png"></button></div>
+        </title-bar><div class="windowContent"><label>Big Balls</label></div><div class="windowActions"><button class="primary">i have those</button>&nbsp;&nbsp;<button class="default">Big Booty</button>&nbsp;&nbsp;<button class="default">cats</button></div></window>
+    <window style="width: 450px"><title-bar class="active">
+        <nei class="title">Text Area</nei><button class="titleControl">
+            <div class="windowControls"><img src="./sys/resources/img/png/minimize_btn.png">
+        </button><button class="titleControl"><img src="./sys/resources/img/png/maximize_btn.png"></button>&nbsp;<button
+            class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div>
+    </title-bar><div class="windowContent"><textarea style="height: 200px"></textarea></div></window>
+    <h3>Menubars</h3>
+    <ul class="menuBar">
+        <il>File</il>
+        <il>Edit</il>
+        <il>View</il>
+    </ul>
+</body>
+</html>

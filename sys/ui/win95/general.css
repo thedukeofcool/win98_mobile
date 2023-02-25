@@ -1,0 +1,79 @@
+html {
+    background: #088;
+    font-family: msSans;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: url(/sys/resources/cursors/arrow.cur), auto;
+}
+
+* {
+    cursor: url(/sys/resources/cursors/arrow.cur), auto;
+}
+
+.hotkey {
+    border-bottom: 1px solid black;
+}
+
+img {
+    image-rendering: pixelated;
+}
+
+textarea {
+    -webkit-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+    resize: none;
+
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    font-family: msSans;
+    font-size: 11px;
+
+    cursor: url(/sys/resources/cursors/Cursor_12.cur), text;
+}
+
+spacer.fivePixels {
+    margin-left: 5px;
+    display: none;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+div.taskbar {
+    height: 32px;
+    padding: 2px;
+    width: 100%;
+    border-top: 1px solid #FFF;
+    outline: 1px solid #DFDFDF;
+    background-color: #CCC;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+button.taskbarBtn {
+    font-size: 20px;
+    min-width: 0px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+strong.size20 {
+    font-weight: normal;
+    text-shadow: 0.5px 0px black, 1.75px 0px black;
+    color: transparent;
+    letter-spacing: 1px;
+}

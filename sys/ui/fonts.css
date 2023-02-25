@@ -1,0 +1,9 @@
+@font-face {
+    font-family: msSans;
+    src: url(../resources/fonts/MS\ Sans\ Serif\ 8pt.ttf);
+}
+
+@font-face {
+    font-family: vgaSys;
+    src: url(../resources/fonts/Perfect\ DOS\ VGA\ 437\ Win.ttf);
+}

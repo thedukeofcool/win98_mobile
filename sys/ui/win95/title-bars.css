@@ -1,0 +1,30 @@
+title-bar {
+    background-color: gray;
+    font-weight: normal;
+    text-shadow: 0.5px 0px #CCC, 1.3px 0px #CCC;
+    color: #CCC;
+    letter-spacing: 1px;
+    font-size: 11px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    width: inherit - 4px;
+    margin-bottom: 4px;
+}
+
+title-bar.active {
+    background-color: #008;
+    font-weight: normal;
+    text-shadow: 0.5px 0px white, 1.3px 0px white;
+    color: transparent;
+    letter-spacing: 1px;
+    font-size: 11px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    width: inherit - 4px;
+}
+
+.title {
+    width: 100%;
+}

@@ -1,0 +1,22 @@
+window {
+   background: #CCC;
+   padding: 3px;
+   display: flex;
+   flex-direction: column;
+   box-shadow: inset -1px -1px black, inset 1px 1px #dfdfdf, inset -2px -2px gray, inset 2px 2px white;
+}
+
+div.windowContent {
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.windowActions {
+    display: flex;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    justify-content: flex-end;
+    width: 100% - 7px;
+}
