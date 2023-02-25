@@ -55,25 +55,21 @@ footer {
 
 div.taskbar {
     height: 40px;
-    padding: 2px;
+    padding: 1px;
     width: 100%;
     border-top: 1px solid #FFF;
     outline: 1px solid #DFDFDF;
     background-color: #CCC;
     padding-left: 3px;
     padding-right: 3px;
+    display: flex;
 }
 
-button.taskbarBtn1 {
+button.taskbarBtn {
     font-size: 20px;
     min-width: 0px;
     padding: 4px 4px;
-}
-
-button.taskbarBtn2 {
-    font-size: 20px;
-    min-width: 0px;
-    padding: 4px 4px;
+    margin: 1px;
 }
 
 strong.size20 {
@@ -83,12 +79,22 @@ strong.size20 {
     letter-spacing: 1px;
 }
 
-img.taskbarIcon1 {
+img.taskbarIcon {
     width: 32px;
     height: 32px;
 }
 
-img.taskbarIcon2 {
-    width: 32px;
-    height: 32px;
+div.taskbarSpacer {
+    width: 91.375%;
+}
+
+div.frame {
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 1px solid #888;
+    border-left: 1px solid #888;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
 }
