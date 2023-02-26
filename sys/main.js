@@ -1,12 +1,17 @@
-var testapp_html = '<div class="app"><label>Hi</label></div>';
-var devmenu_html = '<div class="app" id="devMenu"><h2>Developer Menu</h2><div class="frame"><label>titleBarsEnabled (reload required!)</label>&nbsp;&nbsp;<button class="default" id="titleBarsEnabledBtn" onclick="toggle_cfg(\'titleBarsEnabled\')">' + get_mconfig().titleBarsEnabled + '</button></div></div>';
-
-if (localStorage.mconfig === undefined)
-{
+console.group("confmgr");
+try {
+    JSON.parse(localStorage.mconfig);
+    console.log("sucessfully loaded configuration");
+} catch (e) {
+    console.warn("failed to load mconifg, reseting to defaults");
     localStorage.mconfig = JSON.stringify({
         titleBarsEnabled: false
     });
 }
+console.groupEnd();
+
+var testapp_html = '<div class="app"><label>Hi</label></div>';
+var devmenu_html = '<div class="app" id="devMenu"><h2>Developer Menu</h2><div class="frame"><label>titleBarsEnabled (reload required!)</label>&nbsp;&nbsp;<button class="default" id="titleBarsEnabledBtn" onclick="toggle_cfg(\'titleBarsEnabled\')">' + get_mconfig().titleBarsEnabled + '</button></div></div>';
 
 function get_mconfig() {
     return JSON.parse(localStorage.mconfig);
@@ -34,7 +39,11 @@ function apps_screen() {
     {
         document.getElementsByClassName("app")[i].className += " invisible"
     }
-    document.getElementById("devMenu").remove();
+
+    try {
+        document.getElementById("devMenu").remove();
+    }
+    catch (e) {}
     document.getElementById("apps").className = "appScreen";
 }
 
