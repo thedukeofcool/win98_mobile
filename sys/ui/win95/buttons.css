@@ -36,7 +36,7 @@ button.inset:active, button.clicked:active {
     box-shadow: inset -1px -1px black, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
 }
 
-button.titleControl:active, button.inset {
+button.titleControl:active, button.titleControl:hover, button.inset {
     box-shadow: inset -1px -1px #fff, inset 1px 1px black, inset -2px -2px #dfdfdf, inset 2px 2px gray;
 }
 

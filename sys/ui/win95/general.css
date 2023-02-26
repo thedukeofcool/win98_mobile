@@ -144,3 +144,7 @@ img.appIcon {
     display: flex;
     gap: 2px;
 }
+
+.actuallyInvisible {
+    opacity: 0%;
+}

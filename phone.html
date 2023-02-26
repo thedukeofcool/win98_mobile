@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./sys/ui/win95/menuBars.css">
     <link rel="stylesheet" href="./sys/ui/fonts.css">
     <link rel="stylesheet" href="./sys/ui/nei.css">
+    <script src="./sys/libs/xterm/xterm.js"></script>
     <script src="./sys/main.js" defer></script>
 </head>
 <body>
@@ -33,6 +34,7 @@
         <div class="taskbar">
             <button class="default taskbarBtn" onclick="apps_screen()"><img src="./sys/resources/img/png/start_icon.png" alt="Start" class="taskbarIcon"/></button>
             <button class="default taskbarBtn"><img src="./sys/resources/img/png/tasks_icon.png" alt="Start" class="taskbarIcon"/></button>
+            <button class="default taskbarBtn actuallyInvisible" onclick="open_app('devmenu')">Dev</button>
         </div>
     </footer>
 </body>
