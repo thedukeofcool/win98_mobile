@@ -140,9 +140,10 @@ img.appIcon {
 }
 
 .appScreen {
-    padding: 4px;
+    padding: 3px;
     display: flex;
     gap: 2px;
+    flex-wrap: wrap;
 }
 
 .actuallyInvisible {
