@@ -7,6 +7,18 @@ html {
     -ms-user-select: none;
     user-select: none;
     cursor: url(/sys/resources/cursors/arrow.cur), auto;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0px 0px;
+    padding: 0px 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 * {
@@ -112,4 +124,23 @@ img.appIcon {
     min-height: 32px;
     max-width: 36px;
     max-height: 32px;
+}
+
+.invisible {
+    position: absolute;
+    top: 10000px;
+    right: 10000px;
+}
+
+.app {
+    min-height: 100%;
+    background: #CCC;
+    padding: 7px;
+    max-height: inherit;
+}
+
+.appScreen {
+    padding: 4px;
+    display: flex;
+    gap: 2px;
 }

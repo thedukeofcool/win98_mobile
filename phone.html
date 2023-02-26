@@ -13,21 +13,25 @@
     <link rel="stylesheet" href="./sys/ui/win95/menuBars.css">
     <link rel="stylesheet" href="./sys/ui/fonts.css">
     <link rel="stylesheet" href="./sys/ui/nei.css">
+    <script src="./sys/main.js" defer></script>
 </head>
 <body>
-    <div class="appScreen" id="apps">
-        <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
-        <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
-        <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
-        <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
-        <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
+    <div class="content" id="content">
+        <div class="appScreen" id="apps">
+            <button class="default appTile" onclick="open_app('testApp')"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
+            <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
+            <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
+            <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
+            <button class="default appTile"><img src="./sys/resources/img/png/test_icon.png" alt="Icon" class="appIcon">Test App</button>
+        </div>
     </div>
+    
     <footer>
         <label class="version">
             Windows98 mobile v0.1
         </label>
         <div class="taskbar">
-            <button class="default taskbarBtn"><img src="./sys/resources/img/png/start_icon.png" alt="Start" class="taskbarIcon"/></button>
+            <button class="default taskbarBtn" onclick="apps_screen()"><img src="./sys/resources/img/png/start_icon.png" alt="Start" class="taskbarIcon"/></button>
             <button class="default taskbarBtn"><img src="./sys/resources/img/png/tasks_icon.png" alt="Start" class="taskbarIcon"/></button>
         </div>
     </footer>
