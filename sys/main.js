@@ -1,5 +1,5 @@
 var verInfo = {
-    build: "4.50.17",
+    build: "4.50.18",
     branch: "main",
     greetingStyle: "font-weight: 800; color: white; background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,48,255,1) 100%); padding: 2px;"
 }
@@ -20,7 +20,7 @@ class confmgr {
         console.group("confmgr");
 
         try {
-            var data = localStorage.mconfig;
+            var data = JSON.parse(localStorage.mconfig);
 
             if (data.dataVersion < this.defaultConf.dataVersion) {
                 console.log("found older data version, reseting to v" + this.defaultConf.dataVersion);
@@ -127,36 +127,37 @@ class fileSystem {
             }
         },
         updBuild: verInfo.build,
-        dataVersion: 1
+        dataVersion: 2
     }
 
     constructor() {
         console.group('fileSystem');
         try {
-            var fileSys = localStorage.fileSys;
+            var fileSys = JSON.parse(localStorage.fileSys);
             if (fileSys.dataVersion < this.defaultFs.dataVersion) {
                 // TODO: implement some sort of update system
                 console.log("found older file system version, reseting");
                 this.resetFs();
+            } else {
+                console.log("sucessfully loaded file system");
             }
-            console.log("sucessfully loaded file system")
         } catch (e) {
-            console.log("error loading file system, reseting");
+            console.warn("error loading file system, reseting");
             this.resetFs();
         }
         console.groupEnd();
     }
 
     getFs() {
-        return localStorage.fileSys;
+        return JSON.parse(localStorage.fileSys);
     }
 
     setFs(fs) {
-        localStorage.fileSys = fs;
+        localStorage.fileSys = JSON.stringify(fs);
     }
 
     resetFs() {
-        this.setFs(this.defaultFs);
+        localStorage.fileSys = JSON.stringify(this.defaultFs);
     }
 }
 
