@@ -188,3 +188,7 @@ img.largeAppIcon {
     margin: 2px;
     float: right;
 }
+
+.whiteText {
+    color: white;
+}
