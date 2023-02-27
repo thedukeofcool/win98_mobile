@@ -1,35 +1,36 @@
 var verInfo = {
-    build: "4.10.15",
-    branch: "main"
+    build: "4.50.17",
+    branch: "main",
+    greetingStyle: "font-weight: 800; color: white; background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,48,255,1) 100%); padding: 2px;"
 }
 
-var defaultConf = {
-    titleBarsEnabled: false,
-    userConfig: {
-        backgroundColor: "#088"
-    },
-    dataVersion: 2
-}
-
-console.info("Windows 98 Mobile " + verInfo.build);
+console.info("%cWindows 98 Mobile " + verInfo.build, verInfo.greetingStyle);
+document.getElementById("version").innerText = "Windows 98 Mobile " + verInfo.build;
 
 class confmgr {
+    defaultConf = {
+        titleBarsEnabled: true,
+        userConfig: {
+            backgroundColor: "#088"
+        },
+        dataVersion: 2
+    }
+
     constructor() {
         console.group("confmgr");
 
         try {
-            var data = JSON.parse(localStorage.mconfig);
+            var data = localStorage.mconfig;
 
-            if (data.dataVersion !== 2) {
-                console.log("found older data version, upgrading to v" + defaultConf.dataVersion);
-                localStorage.mconfig = JSON.stringify(defaultConf);
-                console.log("sucessfully upgraded data");
+            if (data.dataVersion < this.defaultConf.dataVersion) {
+                console.log("found older data version, reseting to v" + this.defaultConf.dataVersion);
+                this.resetConf();
             } else {
                 console.log("sucessfully loaded configuration");
             }
         } catch (e) {
-            console.warn("failed to load mconifg, reseting to defaults");
-            localStorage.mconfig = JSON.stringify();
+            console.warn("failed to load conifg, reseting to defaults");
+            this.resetConf();
         }
 
         console.group("userSettings");
@@ -70,6 +71,10 @@ class confmgr {
         conf.userConfig[cfg] = val;
         this.setConf(conf);
     }
+
+    resetConf() {
+        this.setConf(this.defaultConf);
+    }
 }
 
 class appmgr {
@@ -98,6 +103,64 @@ class appmgr {
     }
 }
 
+class fileSystem {
+    defaultFs = {
+        drives: {
+            c: {
+                type: "drive",
+                displayName: "C:",
+                content: {
+                    "test.txt": {
+                        type: "file",
+                        content: ["base64", "VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wcyBvdmVyIHRoZSBsYXp5IGRvZy4="]
+                    },
+                    "directory": {
+                        type: "dir",
+                        content: {}
+                    },
+                    "test_symlink.txt": {
+                        type: "symlink",
+                        pointsToType: "file",
+                        pointsTo: "C:\\test.txt",
+                    }
+                }
+            }
+        },
+        updBuild: verInfo.build,
+        dataVersion: 1
+    }
+
+    constructor() {
+        console.group('fileSystem');
+        try {
+            var fileSys = localStorage.fileSys;
+            if (fileSys.dataVersion < this.defaultFs.dataVersion) {
+                // TODO: implement some sort of update system
+                console.log("found older file system version, reseting");
+                this.resetFs();
+            }
+            console.log("sucessfully loaded file system")
+        } catch (e) {
+            console.log("error loading file system, reseting");
+            this.resetFs();
+        }
+        console.groupEnd();
+    }
+
+    getFs() {
+        return localStorage.fileSys;
+    }
+
+    setFs(fs) {
+        localStorage.fileSys = fs;
+    }
+
+    resetFs() {
+        this.setFs(this.defaultFs);
+    }
+}
+
+fileSys = new fileSystem();
 configUtils = new confmgr();
 appManager = new appmgr();
 
