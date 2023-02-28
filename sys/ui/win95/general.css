@@ -189,6 +189,16 @@ img.largeAppIcon {
     float: right;
 }
 
+.error {
+    color: white;
+    font-weight: normal;
+    text-shadow: 0.5px 0px red, 1.3px 0px red, 4px 3px black, 3px 3px black;
+    color: transparent;
+    letter-spacing: 1px;
+    font-size: 14px;
+    margin: 2px;
+}
+
 .whiteText {
     color: white;
 }
