@@ -1,5 +1,5 @@
 var verInfo = {
-    build: "4.50.18",
+    build: "4.50.19",
     branch: "main",
     greetingStyle: "font-weight: 800; color: white; background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,48,255,1) 100%); padding: 2px;"
 }
@@ -57,7 +57,7 @@ class confmgr {
         var conf = this.getConf();
         conf[cfg] = !conf[cfg];
         this.setConf(conf);
-        document.getElementById(conf + "btn").innerText = conf[cfg];
+        document.getElementById(cfg + "Btn").innerText = conf[cfg];
     }
 
     setCfg(cfg, val) {
