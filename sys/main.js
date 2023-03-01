@@ -1,5 +1,5 @@
 var verInfo = {
-    build: "4.50.22",
+    build: "4.50.23",
     branch: "main",
     greetingStyle: "font-weight: 800; color: white; background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,48,255,1) 100%); padding: 2px;"
 }
@@ -75,17 +75,20 @@ class confmgr {
 }
 
 class appmgr {
+    nextAppId = 1;
+
     open(appId, uiManager, osInst) {
         if(appId == "testApp") {
-            var label = uiManager.label({
-                content: "Hi"
-            });
             document.getElementById("apps").className += " invisible"
             uiManager.app({
                 title: "Test App",
-                id: 1,
+                id: this.nextAppId,
                 content: [
-                    label
+                    uiManager.label({content: "Hi"}),
+                    uiManager.break(2),
+                    uiManager.label({content: "very cool", style: "engraved"}),
+                    uiManager.break(),
+                    uiManager.button({content: "Very nice button", clicked: "alert(1)", type: "primary"})
                 ]
             }, osInst)
         }
@@ -93,12 +96,16 @@ class appmgr {
             document.getElementById("apps").className += " invisible"
             document.getElementById("content").innerHTML += devmenu_html;
         }
+        else {
+            throw new Error("App not found: " + appId);
+        }
+        this.nextAppId++;
     }
 
     hideApps() {
         for(var i = 0; i < document.getElementsByClassName("app").length; i++)
         {
-            document.getElementsByClassName("app")[i].className += " invisible"
+            document.getElementsByClassName("app")[i].className = "app invisible"
         }
 
         try {
@@ -174,7 +181,7 @@ class uiMgr {
 
     processContent(content) {
         var html = ""
-        Object.keys(content).forEach(element => {
+        content.forEach(element => {
             html += element;
         });
         return html;
@@ -185,6 +192,26 @@ class uiMgr {
             return '<label class="' + json.style + '">' + json.content + '</label>';
         } else {
             return '<label>' + json.content + '</label>';
+        }
+    }
+
+    break() {
+        return '<br/>';
+    }
+
+    break(len) {
+        var html = "";
+        for (var i = 0; i < len; i++) {
+            html += "<br/>";
+        }
+        return(html);
+    }
+
+    button(json) {
+        if (json.clicked) {
+            return '<button class="' + json.type + '" onClick="' + json.clicked + '">' + json.content + '</button>'
+        } else {
+            return '<button class="' + json.type + '">' + json.content + '</button>'
         }
     }
 
