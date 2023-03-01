@@ -1,5 +1,5 @@
 var verInfo = {
-    build: "4.50.21",
+    build: "4.50.22",
     branch: "main",
     greetingStyle: "font-weight: 800; color: white; background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,48,255,1) 100%); padding: 2px;"
 }
@@ -75,10 +75,19 @@ class confmgr {
 }
 
 class appmgr {
-    open(appId) {
+    open(appId, uiManager, osInst) {
         if(appId == "testApp") {
+            var label = uiManager.label({
+                content: "Hi"
+            });
             document.getElementById("apps").className += " invisible"
-            document.getElementById("content").innerHTML += testapp_html;
+            uiManager.app({
+                title: "Test App",
+                id: 1,
+                content: [
+                    label
+                ]
+            }, osInst)
         }
         else if (appId == "devmenu") {
             document.getElementById("apps").className += " invisible"
@@ -158,11 +167,46 @@ class fileSystem {
     }
 }
 
+class uiMgr {
+    constructor() {
+
+    }
+
+    processContent(content) {
+        var html = ""
+        Object.keys(content).forEach(element => {
+            html += element;
+        });
+        return html;
+    }
+
+    label(json) {
+        if (json.style) {
+            return '<label class="' + json.style + '">' + json.content + '</label>';
+        } else {
+            return '<label>' + json.content + '</label>';
+        }
+    }
+
+    app(json, osInst) {
+        var titleBarsEnabled = osInst.getServ("configManager").getConf().titleBarsEnabled;
+        var screenContent = document.getElementById("content");
+        if (titleBarsEnabled) {
+            var appContent = '<div class="app" id="app_' + json.id + '"><title-bar class="active mobile_tb"><nei class="title">' + json.title + '</nei><div class="windowControls"><button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar>' + this.processContent(json.content) + '</div>'          
+        } else {
+            var appContent = '<div class="app" id="app_' + json.id + '"><h1>' + json.title + '</h1>' + this.processContent(json.content) + '</div>';
+        }
+        screenContent.innerHTML += appContent;
+        return appContent;
+    }
+}
+
 class main {
     services = {
         fileSys: undefined,
         configManager: undefined,
-        appManager: undefined
+        appManager: undefined,
+        uiManager: undefined
     }
     
     versInfo = verInfo;
@@ -174,6 +218,7 @@ class main {
         this.services.fileSys = new fileSystem();
         this.services.configManager = new confmgr();
         this.services.appManager = new appmgr();
+        this.services.uiManager = new uiMgr();
     }
 
     getServ(service) {
@@ -193,7 +238,7 @@ if (osInst.getServ("configManager").getConf().titleBarsEnabled === true){
 
 // LEGACY FUNCTIONS: dont use
 function open_app(cmd) {
-    osInst.getServ("appManager").open(cmd);
+    osInst.getServ("appManager").open(cmd, osInst.getServ("uiManager"), osInst);
 }
 
 function apps_screen() {
