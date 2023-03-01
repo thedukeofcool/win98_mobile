@@ -1,11 +1,8 @@
 var verInfo = {
-    build: "4.50.19",
+    build: "4.50.21",
     branch: "main",
     greetingStyle: "font-weight: 800; color: white; background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,48,255,1) 100%); padding: 2px;"
 }
-
-console.info("%cWindows 98 Mobile " + verInfo.build, verInfo.greetingStyle);
-document.getElementById("version").innerText = "Windows 98 Mobile " + verInfo.build;
 
 class confmgr {
     defaultConf = {
@@ -161,27 +158,48 @@ class fileSystem {
     }
 }
 
-fileSys = new fileSystem();
-configUtils = new confmgr();
-appManager = new appmgr();
+class main {
+    services = {
+        fileSys: undefined,
+        configManager: undefined,
+        appManager: undefined
+    }
+    
+    versInfo = verInfo;
+
+    constructor() {
+        console.info("%cWindows 98 Mobile " + this.versInfo.build, this.versInfo.greetingStyle);
+        document.getElementById("version").innerText = "Windows 98 Mobile " + this.versInfo.build;
+
+        this.services.fileSys = new fileSystem();
+        this.services.configManager = new confmgr();
+        this.services.appManager = new appmgr();
+    }
+
+    getServ(service) {
+        return this.services[service];
+    }
+}
+
+osInst = new main();
 
 var testapp_html = '<div class="app"><label>Hi</label></div>';
-var devmenu_html = '<div class="app" id="devMenu"><h2>Developer Menu</h2><div class="frame"><label>titleBarsEnabled (reload required!)</label>&nbsp;&nbsp;<button class="default" id="titleBarsEnabledBtn" onclick="toggle_cfg(\'titleBarsEnabled\')">' + configUtils.getConf().titleBarsEnabled + '</button></div></div>';
+var devmenu_html = '<div class="app" id="devMenu"><h2>Developer Menu</h2><div class="frame"><label>titleBarsEnabled (reload required!)</label>&nbsp;&nbsp;<button class="default" id="titleBarsEnabledBtn" onclick="toggle_cfg(\'titleBarsEnabled\')">' + osInst.getServ("configManager").getConf().titleBarsEnabled + '</button></div></div>';
 
-if (configUtils.getConf().titleBarsEnabled === true){
+if (osInst.getServ("configManager").getConf().titleBarsEnabled === true){
     testapp_html = '<div class="app"><title-bar class="active mobile_tb"><nei class="title">Test App</nei><div class="windowControls"><button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar><label>Hi</label></div>';
-    devmenu_html = '<div class="app" id="devMenu"><title-bar class="active mobile_tb"><nei class="title">Developer Menu</nei><div class="windowControls"><button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar><div class="frame"><label>titleBarsEnabled (reload required!)</label>&nbsp;&nbsp;<button class="default" id="titleBarsEnabledBtn" onclick="toggle_cfg(\'titleBarsEnabled\')">' + configUtils.getConf().titleBarsEnabled + '</button></div></div>';
+    devmenu_html = '<div class="app" id="devMenu"><title-bar class="active mobile_tb"><nei class="title">Developer Menu</nei><div class="windowControls"><button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar><div class="frame"><label>titleBarsEnabled (reload required!)</label>&nbsp;&nbsp;<button class="default" id="titleBarsEnabledBtn" onclick="toggle_cfg(\'titleBarsEnabled\')">' + osInst.getServ("configManager").getConf().titleBarsEnabled + '</button></div></div>';
 }
 
 // LEGACY FUNCTIONS: dont use
 function open_app(cmd) {
-    appManager.open(cmd);
+    osInst.getServ("appManager").open(cmd);
 }
 
 function apps_screen() {
-    appManager.hideApps();
+    osInst.getServ("appManager").hideApps();
 }
 
 function toggle_cfg(cfg) {
-    configUtils.toggleCfg(cfg);
+    osInst.getServ("configManager").toggleCfg(cfg);
 }

@@ -190,7 +190,7 @@ img.largeAppIcon {
 }
 
 .error {
-    color: white;
+    color: red;
     font-weight: normal;
     text-shadow: 0.5px 0px red, 1.3px 0px red, 4px 3px black, 3px 3px black;
     color: transparent;
@@ -201,4 +201,9 @@ img.largeAppIcon {
 
 .whiteText {
     color: white;
+}
+
+.appTitle {
+    width: 100%;
+    text-align: left;
 }
