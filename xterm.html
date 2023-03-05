@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./sys/xterm.css">
+</head>
+<body>
+    <div id="terminal" style="padding: 4px; background-color: #2D2E2C; border-radius: 4px; overflow: hidden; border: 1px solid #111;"></div>
+    <script src="./sys/xterm.js"></script>
+    <script>
+        function prompt(t, dir) {
+            t.write(dir + " \x1b[1m$\x1b[0m ");
+        }
+
+        var cmds = {
+            echo: function(t, args) {
+                var echoed = "";
+                var esc = [];
+                for (var i = 1; i < args.length; i++) {
+                    echoed += args[i] + " ";
+                }
+                t.writeln(echoed);
+            },
+            clear: function(t, args) {
+                t.clear();
+            },
+            execjs: function(t, args) {
+                var toExec = "";
+                for (var i = 1; i < args.length; i++) {
+                    toExec += args[i] + " ";
+                }
+                eval(toExec);
+            }
+        }
+
+        function execCmd(t, cmd) {
+            t.write("\r\n");
+            try {
+                cmds[cmd.split(" ")[0].toLowerCase()](t, cmd.split(" "));
+            } catch {
+                t.writeln("\x1b[31mCommand not found: \x1b[1m" + cmd.split(" ")[0] + "\x1b[0m");
+            }
+            prompt(t, "C:\\");
+        }
+
+        var baseTheme = {
+            foreground: '#F8F8F8',
+            background: '#2D2E2C',
+            selection: '#5DA5D533',
+            black: '#1E1E1D',
+            brightBlack: '#262625',
+            red: '#CE5C5C',
+            brightRed: '#FF7272',
+            green: '#5BCC5B',
+            brightGreen: '#72FF72',
+            yellow: '#CCCC5B',
+            brightYellow: '#FFFF72',
+            blue: '#5D5DD3',
+            brightBlue: '#7279FF',
+            magenta: '#BC5ED1',
+            brightMagenta: '#E572FF',
+            cyan: '#5DA5D5',
+            brightCyan: '#72F0FF',
+            white: '#F8F8F8',
+            brightWhite: '#FFFFFF'
+        };
+        
+        var term = new Terminal({
+            fontFamily: '"Cascadia Code"',
+            theme: baseTheme
+        });
+        term.open(document.getElementById('terminal'));
+        term.write("Welcome to TSH! \r\n")
+        var currDir = "C:\\";
+        prompt(term, currDir);
+        var command = "";
+
+        term.onData(e => {
+                switch (e) {
+                    case '\u0003': // Ctrl+C
+                        term.write('\r\nExiting script\r\n');
+                        prompt(term, currDir);
+                        break;
+                    case '\r': // Enter
+                        execCmd(term, command);
+                        command = '';
+                        break;
+                    case '\u007F': // Backspace (DEL)
+                        // Do not delete the prompt
+                        if (term._core.buffer.x > 2) {
+                            term.write('\b \b');
+                            if (command.length > 0) {
+                                command = command.substr(0, command.length - 1);
+                            }
+                        }
+                        break;
+                    default: // Print all other characters for demo
+                        if (e >= String.fromCharCode(0x20) && e <= String.fromCharCode(0x7E) || e >= '\u00a0') {
+                            command += e;
+                            term.write(e);
+                        }
+                }
+            });
+    </script>
+</body>
+</html>
