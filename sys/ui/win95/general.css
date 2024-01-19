@@ -25,6 +25,12 @@ body {
     cursor: url(../../../sys/resources/cursors/arrow.cur), auto;
 }
 
+.content {
+    height: calc(100% - 43px);
+    width: 100%;
+    position: absolute;
+}
+
 .hotkey {
     border-bottom: 1px solid black;
 }
@@ -161,10 +167,12 @@ img.largeAppIcon {
 }
 
 .app {
-    min-height: 100%;
+    height: calc(100% - 4px);
+    width: calc(100% - 4px);
+    position: absolute;
     background: #CCC;
-    padding: 7px;
-    max-height: inherit;
+    padding: 2px;
+    box-shadow: inset -1px -1px black, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
 }
 
 .appScreen {
@@ -206,4 +214,8 @@ img.largeAppIcon {
 .appTitle {
     width: 100%;
     text-align: left;
+}
+
+.app-content {
+    padding: 6px;
 }

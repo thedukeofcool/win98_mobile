@@ -29,7 +29,7 @@ button:disabled {
 }
 
 button.primary:active, button.default:active, button.primary:hover, button.default:hover, button.clicked {
-    box-shadow: inset -1px -1px black, inset 1px 1px black, inset -2px -2px grey, inset 2px 2px gray;
+    box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px black, inset -2px -2px #fff, inset 2px 2px grey;
 }
 
 button.inset:active, button.clicked:active {

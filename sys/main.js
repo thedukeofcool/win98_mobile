@@ -1,5 +1,5 @@
 var verInfo = {
-    build: "4.50.24",
+    build: "4.50.25",
     branch: "main",
     greetingStyle: "font-weight: 800; color: white; background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,48,255,1) 100%); padding: 2px;"
 }
@@ -258,9 +258,9 @@ class uiMgr {
         var titleBarsEnabled = osInst.getServ("configManager").getConf().titleBarsEnabled;
         var screenContent = document.getElementById("content");
         if (titleBarsEnabled) {
-            var appContent = '<div class="app" id="app_' + json.id + '"><title-bar class="active mobile_tb"><nei class="title">' + json.title + '</nei><div class="windowControls"><button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar>' + this.processContent(json.content) + '</div>'          
+            var appContent = '<div class="app" id="app_' + json.id + '"><title-bar class="active mobile_tb"><nei class="title">' + json.title + '</nei><div class="windowControls"><button class="titleControl"><img src="./sys/resources/img/png/close_btn.png"></button></div></title-bar><div class="app-content">' + this.processContent(json.content) + '</div></div>'          
         } else {
-            var appContent = '<div class="app" id="app_' + json.id + '"><h1>' + json.title + '</h1>' + this.processContent(json.content) + '</div>';
+            var appContent = '<div class="app" id="app_' + json.id + '"><h1>' + json.title + '</h1><div class="app-content">' + this.processContent(json.content) + '</div></div>';
         }
         screenContent.innerHTML += appContent;
         return appContent;
