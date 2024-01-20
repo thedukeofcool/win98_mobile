@@ -8,11 +8,11 @@ export class AppManager {
                 title: "Test App",
                 id: this.nextAppId,
                 content: [
-                    uiManager.label({ content: "Hi" }),
+                    uiManager.label({ content: "The quick brown fox jumps over the lazy dog. 1234567890" }),
                     uiManager.break(2),
-                    uiManager.label({ content: "very cool", style: "engraved" }),
+                    uiManager.button({ content: "Primary Button", clicked: "alert(1)", type: "primary" }),
                     uiManager.break(),
-                    uiManager.button({ content: "Very nice button", clicked: "alert(1)", type: "primary" })
+                    uiManager.button({ content: "Normal Button", clicked: "alert(2)" })
                 ]
             })
         }

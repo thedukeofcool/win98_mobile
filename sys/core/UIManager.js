@@ -31,6 +31,14 @@ export class UIManager {
 
 
     button(json) {
+        if (!json.type) {
+            if (json.clicked) {
+                return '<button onClick="' + json.clicked + '">' + json.content + '</button>'
+            } else {
+                return '<button>' + json.content + '</button>'
+            }
+        }
+
         if (json.clicked) {
             return '<button class="' + json.type + '" onClick="' + json.clicked + '">' + json.content + '</button>'
         } else {
@@ -47,6 +55,7 @@ export class UIManager {
             var appContent = '<div class="app" id="app_' + json.id + '"><h1>' + json.title + '</h1><div class="app-content">' + this.processContent(json.content) + '</div></div>';
         }
         screenContent.innerHTML += appContent;
+
         return appContent;
     }
 }

@@ -1,4 +1,5 @@
 import { AppManager } from "./AppManager.js";
+import { AppsScreen } from "./AppsScreen.js";
 import { ConfigManager } from "./ConfigManager.js";
 import { FileSystem } from "./FileSystem.js";
 import { HTTPManager } from "./HTTPManager.js";
@@ -15,9 +16,10 @@ export class Main {
     };
 
     constructor() {
-        console.info("%cWindows 98 Mobile " + verInfo.build, verInfo.greetingStyle);
-        document.getElementById("version").innerText = "Windows 98 Mobile " + verInfo.build;
+        console.info("%cWindows 98 Mobile " + verInfo.build + "." + verInfo.branch, verInfo.greetingStyle);
+        document.getElementById("version").innerText = "Windows 98 Mobile " + verInfo.build + "." + verInfo.branch;
 
+        new AppsScreen([{icon: 'generic', title: 'Test App', id: 'testApp'}]);
         this.services.fileSys = new FileSystem();
         this.services.configManager = new ConfigManager();
         this.services.appManager = new AppManager();
@@ -34,7 +36,8 @@ globalThis.os = new Main();
 
 // LEGACY FUNCTIONS: dont use
 function open_app(cmd) {
-    os.getServ("appManager").open(cmd, os.getServ("uiManager"), os);
+    console.log('open_app');
+    os.getServ("appManager").open(cmd, os.getServ("uiManager"));
 }
 
 function apps_screen() {
